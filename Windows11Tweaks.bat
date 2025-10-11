@@ -3150,6 +3150,15 @@ reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxS
 rem ::: Disable Search Box Suggestions for Local Machine
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d "1" /f
 
+rem ::: Hide Recommended Section in Start Menu
+reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Start" /v HideRecommendedSection /t REG_DWORD /d 1 /f
+
+rem ::: Set IsEducationEnvironment
+reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Education" /v IsEducationEnvironment /t REG_DWORD /d 1 /f
+
+rem ::: Hide Recommended Section via Policies
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v HideRecommendedSection /t REG_DWORD /d 1 /f
+
 rem ::: REBOOT YOUR PC
 
 PAUSE
