@@ -21,7 +21,7 @@ rem ::: Disable Power Saving Feature
 bcdedit /set disabledynamictick yes
 
 rem ::: TSC Sync Policy
-bcdedit /set tscsyncpolicy enhanced
+bcdedit /set tscsyncpolicy legacy
 
 rem ::: Disable High Precision Event Timer
 
