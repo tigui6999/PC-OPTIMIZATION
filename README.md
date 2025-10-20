@@ -49,7 +49,7 @@
 - Hyper-V ```Disable``` 
 - Intel Virtualization Technology ```Disable``` 
 - VT-d ```Disable``` 
-- Hyper-Threading ```Disable```
+- Hyper-Threading [_Dependant on Game/System_] ```Disable```
 - Spread Spectrum [_When Overclocking_]```Disable``` 
 - CPU C-States ```Disable``` 
 - CPU Power Throttling ```Disable``` 
