@@ -24,7 +24,6 @@ rem ::: TSC Sync Policy
 bcdedit /set tscsyncpolicy legacy
 
 rem ::: Disable High Precision Event Timer
-
 pnputil /disable-device "ACPI\PNP0103\0"
 
 rem ::: Disable HPET (High Precision Event Timer)
