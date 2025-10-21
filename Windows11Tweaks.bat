@@ -3021,18 +3021,15 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /v "IrisClient
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /v "ExplorerStartupTraceRecorded" /t REG_DWORD /d "1" /f
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /v "SIDUpdatedOnLibraries" /t REG_DWORD /d "1" /f
 
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "AutoSearch" /t REG_DWORD /d "0" /f
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /v "NavPaneExpandToCurrentFolder" /t REG_DWORD /d "0" /f
-
 rem ::: Disable People Bar
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\default\Start\HidePeopleBar" /v "value" /t REG_DWORD /d "1" /f
 
 rem ::: Disable Favorites
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "NavPaneShowFavorites" /t REG_DWORD /d "0" /f
 
-rem ::: Disable Thumbnail Cache
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoThumbNailCache" /t REG_DWORD /d "0" /f
-reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoThumbNailCache" /t REG_DWORD /d "0" /f
+rem ::: Enable Thumbnail Cache
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoThumbNailCache" /t REG_DWORD /d "1" /f
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoThumbNailCache" /t REG_DWORD /d "1" /f
 
 rem ::: Disable OneDrive States
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "NavPaneShowAllCloudStates" /t REG_DWORD /d "0" /f
@@ -3100,11 +3097,11 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "EventProcessorEnabled"
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HiberFileType" /t REG_DWORD /d "0" /f
 
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" /v "DownloadMode" /t REG_DWORD /d "0" /f
-
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\EOSNotify" /v "DiscontinueEOS" /t REG_DWORD /d "1" /f
-
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Wdf" /v "WdfGlobalLogsDisabled" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Wdf" /v "WdfGlobalSleepStudyDisabled" /t REG_DWORD /d "1" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "AutoSearch" /t REG_DWORD /d "0" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer" /v "NavPaneExpandToCurrentFolder" /t REG_DWORD /d "0" /f
 
 rem ::: =================================== Windows Settings ===================================	
 rem ::: -----------------------------------  Various Extras  -----------------------------------	
@@ -3145,10 +3142,10 @@ rem ::: Disable Edge Sidebar (HubsSidebarEnabled)
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Edge" /v HubsSidebarEnabled /t REG_DWORD /d "0" /f
 
 rem ::: Disable Search Box Suggestions for Current User
-reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d "1" /f
+reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d "0" /f
 
 rem ::: Disable Search Box Suggestions for Local Machine
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d "0" /f
 
 rem ::: Hide Recommended Section in Start Menu
 reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Start" /v HideRecommendedSection /t REG_DWORD /d 1 /f
