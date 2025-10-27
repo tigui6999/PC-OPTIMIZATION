@@ -21,7 +21,7 @@ rem ::: Disable Power Saving Feature
 bcdedit /set disabledynamictick yes
 
 rem ::: TSC Sync Policy
-bcdedit /set tscsyncpolicy legacy
+bcdedit /set tscsyncpolicy enhanced
 
 rem ::: Disable High Precision Event Timer
 pnputil /disable-device "ACPI\PNP0103\0"
