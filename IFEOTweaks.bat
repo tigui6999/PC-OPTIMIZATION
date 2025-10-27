@@ -4,8 +4,7 @@ rem ::: Plundered by NEKR1D
 
 rem ::: Defines CPU, I/O and Page Priority of games, system and software executables
 
-rem ::: !!! Warning !!!
-rem ::: !!! DO NOT INSTALL !!!
+rem ::: !!! WARNING !!!
 rem ::: !!! Use script as reference only, modify and add your own games/software !!!
 
 rem ::: 1: Idle
@@ -151,3 +150,4 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution 
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\PathOfExileSteam.exe" /v "UseLargePages" /t REG_DWORD /d "1" /f
 
 PAUSE
+
