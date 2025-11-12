@@ -13,7 +13,7 @@
 > - Currently tested and working on;
 >   - ```INTEL i9 12900K```
 >   - ```NVIDIA RTX 3080```
->   - ```WINDOWS 11 Pro [Version 25H2 Build 26200.6899]```
+>   - ```WINDOWS 11 Pro [Version 25H2 Build 26200.7171]```
 
 > [!WARNING]
 > - Tweaks are experimental.
