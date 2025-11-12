@@ -110,6 +110,9 @@
   - https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device
 - Windows - Interrupt Affinity
   - https://video2.skills-academy.com/en-us/windows-hardware/drivers/kernel/interrupt-affinity-and-priority
+- Windows - Update Fixes High Polling Rate Stuttering
+  - https://forums.blurbusters.com/viewtopic.php?t=12157
+  - https://www.reddit.com/r/Windows11/comments/109ca82/call_to_action_can_you_see_if_fps_drops_in_games/
 
 ***
 <p align="center"> Plundered with ❤️ by NEKR1D </p>
