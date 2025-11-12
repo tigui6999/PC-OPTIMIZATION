@@ -37,4 +37,7 @@ reg add "HKCU\Control Panel\Mouse" /v RawInput /t REG_SZ /d "1" /f
 rem ::: Activate a window by hovering over it with the mouse // allows hover scrolling
 reg add "HKCU\Control Panel\Mouse" /v ActiveWindowTracking /t REG_DWORD /d "1" /f
 
+rem ::: Unlock Windows background mouse polling rate cap
+reg add "HKCU\Control Panel\Mouse" /v "RawMouseThrottleEnabled" /t REG_DWORD /d "0" /f
+
 PAUSE
