@@ -20,7 +20,6 @@ TIMEOUT 1
 @echo off
 
 rem ::: Disable Nagle's Algorithm and modify ACK
-
 rem ::: Get list of physical adapters where NetEnabled=true and AdapterTypeID=0 (Ethernet)
 rem ::: First check to confirm we only want to select the active physical network adapter
 setlocal enabledelayedexpansion
@@ -44,8 +43,7 @@ exit /b 1
 rem ::: Set Registry path to TCP/IP parameters\interface of the active physical network adapter
 set REG_PATH=HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%GUID%
 
-echo Disabling Nagle's Algorithm for adapter with GUID: %GUID%
-
+rem ::: Disabling Nagle's Algorithm
 rem ::: Apply registry settings to disable Nagle's Algorithm and modify ACK behavior
 reg add "%REG_PATH%" /v TcpAckFrequency /t REG_DWORD /d 1 /f
 reg add "%REG_PATH%" /v TCPNoDelay /t REG_DWORD /d 1 /f
