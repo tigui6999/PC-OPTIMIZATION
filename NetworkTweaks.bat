@@ -179,7 +179,8 @@ rem ::: Enable Interrupt Moderation on Network Adapter
 rem ::: Set Interrupt Moderation // ON = 1 OFF = 0
 rem ::: Set Interrupt Throttling Rate (ITR) // 125 = Medium, 0 = Off
 rem ::: Recommended // ON + Low or Medium for lowest IRQ/DPC latency and errors
-rem ::: Not Recommended // Most tweakers do OFF + OFF for theoretical lowest packet handling latency but can increase IRQ/DPC latency and errors and CPU usage % without any benefit
+rem ::: Not Recommended // Most tweakers do OFF + OFF for theoretical lowest packet handling latency but can increase IRQ/DPC latency and CPU%
+rem ::: Default // Most Onboard NICS have this set to ON + Low as default
 reg add "%%n" /v "*InterruptModeration" /t REG_SZ /d "1" /f
 reg add "%%n" /v "ITR" /t REG_SZ /d "125" /f
 
