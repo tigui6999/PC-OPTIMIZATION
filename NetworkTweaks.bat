@@ -8,7 +8,7 @@ rem ::: !!! May brick your Network Adapter and connectivity !!!
 rem ::: !!! Use script as reference only !!!
 
 rem ::: !!! Mismatched settings between browser, OS, tcp stack, device and registry can have unintended behavior !!!
-rem ::: !!! Friendly reminder - some settings can take priority over others and cause confusion !!!
+rem ::: !!! Settings can take priority over others depending at which layer they are set !!!
 
 rem ::: Installing WMIC...
 if not exist C:\Windows\System32\wbem\WMIC.exe (
@@ -140,6 +140,10 @@ reg add "%%n" /v "*SpeedDuplex" /t REG_SZ /d "6" /f
 rem ::: Disabling MIMO Power Save Mode -  Disable = 1
 reg add "%%n" /v "MIMOPowerSaveMode" /t REG_SZ /d "3" /f
 
+rem ::: Disable Power Management options
+reg add "%%n" /v "PnPCapabilities" /t REG_DWORD /d "0x00000118" /f
+reg add "%%n" /v "PnpDevicePowerManagement" /t REG_DWORD /d "0" /f
+
 rem ::: Disable most properties/services on Network Adapter 
 rem ::: These are also viewable/visible in device manager properties of device
 rem ::: Intel i-225v Adapter no longer supports RSS [officially removed in .inf]
@@ -206,9 +210,6 @@ reg add "%%n" /v "TxAbsIntDelay" /t REG_SZ /d "0" /f
 reg add "%%n" /v "RxIntDelay" /t REG_SZ /d "0" /f
 reg add "%%n" /v "RxAbsIntDelay" /t REG_SZ /d "0" /f
 reg add "%%n" /v "FlowControlCap" /t REG_SZ /d "0" /f
-
-rem ::: Disable Power Management options
-reg add "%%n" /v "PnPCapabilities" /t REG_DWORD /d "0x00000118" /f
 )
 
 rem ::: MSI mode support for Network Adapter
