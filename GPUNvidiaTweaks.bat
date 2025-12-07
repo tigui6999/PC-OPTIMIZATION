@@ -183,10 +183,15 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "RmEnableHda" /t RE
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "EnableHDAudioD3Cold" /t REG_DWORD /d "0" /f
 
 rem ::: NVIDIA HD audio tweaks
-
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i\PowerSettings" /v "ConservationIdleTime" /t REG_DWORD /d "00000000" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i\PowerSettings" /v "IdlePowerState" /t REG_DWORD /d "00000000" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i\PowerSettings" /v "PerformanceIdleTime" /t REG_DWORD /d "00000000" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "RmEnableHda" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "EnableHDAudioD3Cold" /t REG_DWORD /d "0" /f
+
+rem ::: Define PciLatencyTimerControl
+rem ::: melody / alufena = 0x00000020 (32)
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
 )
 )
 ) 
@@ -410,9 +415,5 @@ REG ADD "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "Gesta
 rem ::: Use NVIDIA Old Sharpening Filter
 reg add "HKLM\SYSTEM\CurrentControlSet\services\nvlddmkm\FTS" /v "EnableGR535" /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters\FTS" /v "EnableGR535" /t REG_DWORD /d 0 /f
-
-rem ::: Define PciLatencyTimerControl
-rem ::: melody / alufena = 0x00000020 (32)
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
 
 PAUSE
