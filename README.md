@@ -33,6 +33,7 @@
 - Intelligent Standby List Cleaner
 - Interrupt Affinity Policy Tool
 - Measure Sleep
+- MSI Afterburner
 - NVIDIA Profile Inspector
 - NVCleanInstall
 - ParkControl
