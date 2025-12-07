@@ -11,7 +11,7 @@ rem ::: CPU Thread Quantum and Foreground Boost Priority Tweaks
 
 rem ::: No Foreground Boost [0]
 rem ::: 0x18 Hex 24 Decimal = | Long | Fixed | 0 | [187.5ms/187.5ms/375ms] (Windows Default for Processor Scheduling set to "Background Services")
-rem ::: 0x24 Hex 36 Decimal = | Short | Variable | 0 | [31.25m/31.25ms/62.50ms]
+rem ::: 0x24 Hex 36 Decimal = | Short | Variable | 0 | [31.25m/31.25ms/62.50ms] (Potential for best balance of latency and performance)
 rem ::: 0x28 Hex 40 Decimal = | Short | Fixed | 0 | [93.75ms/93.75ms/281.25ms]
 
 rem ::: High Foreground Boost [2]
