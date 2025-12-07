@@ -1,17 +1,17 @@
-rem ::: Device Manager Services Tweaks
+rem ::: Device & Services Tweaks
 
 rem ::: Plundered by NEKR1D
 
 rem ::: Originally created by Shoober420
 rem ::: https://github.com/shoober420/windows11-scripts
 
-rem ::: Disables specific device manager services (such as chipset drivers) that are not used, and can be disable system-wide.
+rem ::: Disables unnecessary devices and services (such as those loaded with chipset drivers) that are not needed.
 
 rem ::: !!! Warning !!!
 rem ::: !!! Your hardware, chipset and devices are different !!!
 rem ::: !!! Use script as reference only !!!
 
-rem ::: "pnputil /enum-devices" shows all services
+rem ::: pnputil /enum-devices" shows all services
 
 rem ::: WAN Miniport (L2TP)
 pnputil /disable-device "SWD\MSRRAS\MS_L2TPMINIPORT"
@@ -121,7 +121,8 @@ pnputil /disable-device "ROOT\vdrvroot\0000"
 rem ::: Composite Bus Enumerator
 pnputil /disable-device "ROOT\CompositeBus\0000"
 
-rem ::: High precision event timer
+rem ::: High precision event timer (HPET)
+rem ::: Leave HPET enabled in BIOS
 pnputil /disable-device "ACPI\PNP0103\0"
 
 rem ::: Microsoft Hyper-V Virtualization Infrastructure Driver
