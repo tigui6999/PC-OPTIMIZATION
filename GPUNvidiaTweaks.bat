@@ -49,8 +49,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "D3PCLatency" /t RE
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "LOWLATENCY" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "Node3DLowLatency" /t REG_DWORD /d "1" /f
 
-rem ::: melody / alufena = 0x00000020 (32)
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
+
 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "RmGspcMaxFtuS" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "RmGspcMinFtuS" /t REG_DWORD /d "1" /f
@@ -193,9 +192,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "F1TransitionLatenc
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "LOWLATENCY" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "Node3DLowLatency" /t REG_DWORD /d "1" /f
 
-rem ::: melody / alufena = 0x00000020 (32)
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
-
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "RMDeepL1EntryLatencyUsec" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "RmGspcMaxFtuS" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "RmGspcMinFtuS" /t REG_DWORD /d "1" /f
@@ -320,16 +316,12 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "AllowMaxPerf" /t R
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "EnableMemoryTiling" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "EnableSystemMemoryTiling" /t REG_DWORD /d "0" /f
 
-
-
 reg add "HKLM\SYSTEM\ControlSet001\Services\NVDisplay.ContainerLocalSystem\LocalSystem\NvcDispCorePlugin" /v "DisableLoad" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\ControlSet001\Services\NVDisplay.ContainerLocalSystem\LocalSystem\NvcDispCorePlugin" /v "LogLevel" /t REG_DWORD /d "0" /f
 
 reg add "HKLM\SOFTWARE\NVIDIA Corporation\Global\FTS" /v "EnableRID44231" /t REG_DWORD /d "0" /f
 reg add "HKLM\SOFTWARE\NVIDIA Corporation\Global\FTS" /v "EnableRID64640" /t REG_DWORD /d "0" /f
 reg add "HKLM\SOFTWARE\NVIDIA Corporation\Global\FTS" /v "EnableRID66610" /t REG_DWORD /d "0" /f
-
-
 
 rem ::: Disable NVIDIA Telemetry
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "NvBackend" /f
@@ -355,7 +347,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RmGpsPsEnabl
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power" /v "RmGpsPsEnablePerCpuCoreDpc" /t REG_DWORD /d "1" /f
 
 rem ::: Enable NVIDIA tray icon
-rem ::: Keeping this key here if ever wanting to disable
+rem ::: Keeping this key here if ever wanting to disable (0)
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\NvTray" /v "StartOnLogin" /t REG_DWORD /d 1 /f
 
 rem ::: Use Advanced 3D Settings
@@ -364,5 +356,14 @@ reg add "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "Gesta
 rem ::: Enable Old NVIDIA Sharpening Filter
 reg add "HKLM\SYSTEM\CurrentControlSet\services\nvlddmkm\FTS" /v "EnableGR535" /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters\FTS" /v "EnableGR535" /t REG_DWORD /d 0 /f
+
+rem ::: !!! NEW TWEAKS TESTING BELOW !!!
+rem ::: !!! MAY CAUSE ISSUES !!!
+
+rem ::: melody / alufena = 0x00000020 (32)
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
+
+rem ::: melody / alufena = 0x00000020 (32)
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
 
 PAUSE

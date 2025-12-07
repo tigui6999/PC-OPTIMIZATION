@@ -180,7 +180,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "LOWLATENCY" 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RmDisableRegistryCaching" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RMDisablePostL2Compression" /t REG_DWORD /d "1" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "F1TransitionLatency" /t REG_DWORD /d "1' /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "F1TransitionLatency" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RMDeepL1EntryLatencyUsec" /t REG_DWORD /d "1" /f
 
 rem ::: Direct3D Tweaks
@@ -227,9 +227,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableBadDr
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableBoostedVSyncVirtualization" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableIndependentVidPnVSync" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableMultiSourceMPOCheck" /t REG_DWORD /d "1" /f
-
-rem ::: alufena = 1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "EnableFbrValidation" /t REG_DWORD /d "1" /f
 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "KnownProcessBoostMode" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DefaultD3TransitionLatencyActivelyUsed" /t REG_DWORD /d "1" /f
@@ -459,9 +456,6 @@ rem ::: DECREASES FPS WHEN SET TO 1
 rem reg delete "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuedRenderPacketGroupLimit" /f
 rem reg delete "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuedRenderPacketGroupLimitPerNode" /f
 
-rem ::: alufena = 2
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuedRenderPacketGroupLimit" /t REG_DWORD /d "2" /f
-
 rem reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuedRenderPacketGroupLimitPerNode" /t REG_DWORD /d "1" /f
 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "CLOUDSDK_CORE_DISABLE_PROMPTS" /t REG_SZ /d "1" /f
@@ -527,9 +521,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "AMD_FORCE_LOW_LATENCY_MODE" /t REG_SZ /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DX_ENABLE_MULTITHREADED_OPTIMIZATIONS" /t REG_SZ /d "1" /f
 
-rem ::: alufena = 0x00000080
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DX_MaxFrameBufferSize" /t REG_DWORD /d "0x00000080" /f
-
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DX_USE_DXGI_FLIP_MODE" /t REG_SZ /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "ENABLE_LOW_LATENCY_MODE" /t REG_SZ /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "ENABLE_MEMORY_PREFETCH" /t REG_SZ /d "1" /f
@@ -547,18 +538,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_DYNAMIC_PRIORITY" /t REG_SZ /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_ENABLE_ASYNC_COMPUTE" /t REG_SZ /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DX_ENABLE_MULTITHREADED_OPTIMIZATIONS" /t REG_SZ /d "1" /f
-
-rem ::: alufena = 16
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_FRAME_TIME_LIMIT" /t REG_SZ /d "1" /f
-
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MAX_FRAMERATE" /t REG_SZ /d "999" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MAX_TASK_PRIORITY" /t REG_SZ /d "0" /f
-
-rem ::: alufena = 512
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MAX_WORKGROUP_SIZE" /t REG_SZ /d "512" /f
-
-rem ::: alufena = 64
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MINIMUM_BATCH_SIZE" /t REG_SZ /d "64" /f
 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_USE_DEDICATED_MEMORY" /t REG_SZ /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_USE_SHARED_MEMORY" /t REG_SZ /d "1" /f
@@ -615,28 +594,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows" /v "RITdemon
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows" /v "RITdemonTimerPowerSaveElapse" /t REG_DWORD /d "0" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows" /v "TimerCoalescing" /t REG_BINARY /d "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" /f
 
-rem ::: alufena = 2
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "CrtcPhaseFrames" /t REG_DWORD /d "1" /f
-
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableAsyncShaderCompile" /t REG_DWORD /d "0" /f
-
-rem ::: alufena = 1
-rem ::: 1 CAUSES BLACK SCREEN AT SIGN IN
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableGdiContextGpuVa" /t REG_DWORD /d "0" /f
-
-rem ::: alufena = 1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableMonitoredFenceGpuVa" /t REG_DWORD /d "1" /f
-
-rem ::: alufena = 1
-rem ::: 1 CAUSES BLACK SCREEN AT SIGN IN
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisablePagingContextGpuVa" /t REG_DWORD /d "0" /f
-
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableSecondaryIFlipSupport" /t REG_DWORD /d "0" /f
-
-rem ::: Virtual Address-backed Virtual Machine
-rem ::: alufena = 0
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableVaBackedVm" /t REG_DWORD /d "1" /f
-
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableVerticalBlankInterrupts" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DriverManagesResidencyOverride" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DRTTestEnable" /t REG_DWORD /d "0" /f
@@ -661,6 +618,97 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceEnableD
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceExplicitResidencyNotification" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceInitPagingProcessVaSpace" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceReplicateGdiContent" /t REG_DWORD /d "0" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceSurpriseRemovalSupport" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceToMapGpuVa" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceUsb4MonitorSupport" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceVariableRefresh" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HighPriorityCompletionMode" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "InternalDiagnosticsBufferMultiplier" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "InternalDiagnosticsBufferSize" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "InvestigationDebugParameter" /t REG_DWORD /d "0" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "IsInternalRelease" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "LimitNumberOfVfs" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "MultiMonSupport" /t REG_DWORD /d "0" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "NumVirtualFunctions" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "OutputDuplicationSessionApplicationLimit" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PageFaultDebugMode" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PreserveFirmwareMode" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PreventFullscreenWireFormatChange" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RapidHPDThresholdCount" /t REG_DWORD /d "0" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "SupportMultipleIntegratedDisplays" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "TreatUsb4MonitorAsNormal" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "Usb4MonitorPowerOnDelayInSeconds" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ValidateWDDMCaps" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "VirtualGpuOnly" /t REG_DWORD /d "0" /f
+
+rem ::: WDDM2+ Memory Management
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "WDDM2LockManagement" /t REG_DWORD /d "1" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableFlipEx" /t REG_DWORD /d "1" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableFramePacing" /t REG_DWORD /d "1" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableHDASurfaces" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableIndependentFlip" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableSoftwarePaging" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableTiledResources" /t REG_DWORD /d "1" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "ReduceStalls" /t REG_DWORD /d "1" /f
+
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "CarryOverUsedQuantum" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "CountFlipTowardHwLimit" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "CountPresentTowardHwLimit" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnableFrameBufferCompression" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnableGpuBoost" /t REG_DWORD /d "1" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HistoryLogSize" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuePacketCap" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "PerSourceCustomDuration" /t REG_DWORD /d "0" /f
+reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "PfnCpuOverride" /t REG_DWORD /d "0" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "AffinitizeAllInterrupts" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "EnableMSI" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "ForceMSI" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "InterruptSteeringEnabled" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "LowLatencyMode" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "MSIEnable" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "PCIDelayTransaction" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "PCIPrefetchEnable" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "UseMPSCap" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "InterruptSteeringDisabled" /t REG_DWORD /d "1" /f
+
+reg add "HKCU\SOFTWARE\Microsoft\DirectDraw" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Wow6432Node\Microsoft\DirectDraw" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "AsyncFlip" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "DisablePresentationInterval" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "EnableFramePacing" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "ForceWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "RenderAheadLimit" /t REG_DWORD /d "1" /f
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Direct3D" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Microsoft\Direct3D\Drivers" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKCU\SOFTWARE\Microsoft\Direct3D\Drivers" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SOFTWARE\Wow6432Node\Microsoft\Direct3D\Drivers" /v "EnableWARP" /t REG_DWORD /d "1" /f
+
+
+rem ::: !!! NEW TWEAKS TESTING BELOW !!!
+rem ::: !!! MAY CAUSE ISSUES !!!
+
+rem ::: alufena = 1
+reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\System\DisableDirectXDatabaseUpdate" /v "value" /t REG_DWORD /d "0" /f
+
+rem ::: alufena = DELETED
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableVariableRefresh" /f
+
+rem ::: alufena = 1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "SmallQuantumMode" /t REG_DWORD /d "1" /f
+
+rem ::: alufena = 0
+rem ::: 0 DECREASES FPS
+rem reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "NodeUsageTelemetryTimerInterval" /t REG_DWORD /d "0" /f
 
 rem ::: alufena = 0
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceDirectFlip" /t REG_DWORD /d "1" /f
@@ -697,96 +745,52 @@ rem ::: PCI Latency Timer Control
 rem ::: melody / alufena = 0x00000020 (32)
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceSurpriseRemovalSupport" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceToMapGpuVa" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceUsb4MonitorSupport" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ForceVariableRefresh" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HighPriorityCompletionMode" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "InternalDiagnosticsBufferMultiplier" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "InternalDiagnosticsBufferSize" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "InvestigationDebugParameter" /t REG_DWORD /d "0" /f
-
 rem ::: IOMMU-based GPU isolation
 rem ::: Input-Output Memory Management Unit (IOMMU)
 rem ::: alufena = 0
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "IoMmuFlags" /t REG_DWORD /d "0" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "IsInternalRelease" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "LimitNumberOfVfs" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "MultiMonSupport" /t REG_DWORD /d "0" /f
+rem ::: alufena = 2
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "CrtcPhaseFrames" /t REG_DWORD /d "1" /f
 
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableAsyncShaderCompile" /t REG_DWORD /d "0" /f
+
+rem ::: alufena = 1
+rem ::: 1 CAUSES BLACK SCREEN AT SIGN IN
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableGdiContextGpuVa" /t REG_DWORD /d "0" /f
+
+rem ::: alufena = 1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableMonitoredFenceGpuVa" /t REG_DWORD /d "1" /f
+
+rem ::: alufena = 1
+rem ::: 1 CAUSES BLACK SCREEN AT SIGN IN
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisablePagingContextGpuVa" /t REG_DWORD /d "0" /f
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableSecondaryIFlipSupport" /t REG_DWORD /d "0" /f
+
+rem ::: Virtual Address-backed Virtual Machine
 rem ::: alufena = 0
-rem ::: 0 DECREASES FPS
-rem reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "NodeUsageTelemetryTimerInterval" /t REG_DWORD /d "0" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "DisableVaBackedVm" /t REG_DWORD /d "1" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "NumVirtualFunctions" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "OutputDuplicationSessionApplicationLimit" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PageFaultDebugMode" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PreserveFirmwareMode" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PreventFullscreenWireFormatChange" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RapidHPDThresholdCount" /t REG_DWORD /d "0" /f
+rem ::: alufena = 16
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_FRAME_TIME_LIMIT" /t REG_SZ /d "1" /f
 
-rem ::: alufena = 1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "SmallQuantumMode" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MAX_FRAMERATE" /t REG_SZ /d "999" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MAX_TASK_PRIORITY" /t REG_SZ /d "0" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "SupportMultipleIntegratedDisplays" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "TreatUsb4MonitorAsNormal" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "Usb4MonitorPowerOnDelayInSeconds" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "ValidateWDDMCaps" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "VirtualGpuOnly" /t REG_DWORD /d "0" /f
+rem ::: alufena = 512
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MAX_WORKGROUP_SIZE" /t REG_SZ /d "512" /f
 
-rem ::: WDDM2+ Memory Management
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "WDDM2LockManagement" /t REG_DWORD /d "1" /f
+rem ::: alufena = 64
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "GPU_MINIMUM_BATCH_SIZE" /t REG_SZ /d "64" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableFlipEx" /t REG_DWORD /d "1" /f
+rem ::: alufena = 0x00000080
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DX_MaxFrameBufferSize" /t REG_DWORD /d "0x00000080" /f
 
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableFramePacing" /t REG_DWORD /d "1" /f
-
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableHDASurfaces" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableIndependentFlip" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableSoftwarePaging" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableTiledResources" /t REG_DWORD /d "1" /f
-
-rem ::: alufena = DELETED
-reg delete "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "EnableVariableRefresh" /f
-
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DXGKrnl" /v "ReduceStalls" /t REG_DWORD /d "1" /f
-
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "CarryOverUsedQuantum" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "CountFlipTowardHwLimit" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "CountPresentTowardHwLimit" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnableFrameBufferCompression" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnableGpuBoost" /t REG_DWORD /d "1" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HistoryLogSize" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuePacketCap" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "PerSourceCustomDuration" /t REG_DWORD /d "0" /f
-reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "PfnCpuOverride" /t REG_DWORD /d "0" /f
-
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "AffinitizeAllInterrupts" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "EnableMSI" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "ForceMSI" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "InterruptSteeringEnabled" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "LowLatencyMode" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "MSIEnable" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "PCIDelayTransaction" /t REG_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "PCIPrefetchEnable" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "UseMPSCap" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PnP\Pci" /v "InterruptSteeringDisabled" /t REG_DWORD /d "1" /f
+rem ::: alufena = 2
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "HwQueuedRenderPacketGroupLimit" /t REG_DWORD /d "2" /f
 
 rem ::: alufena = 1
-reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\System\DisableDirectXDatabaseUpdate" /v "value" /t REG_DWORD /d "0" /f
-
-reg add "HKCU\SOFTWARE\Microsoft\DirectDraw" /v "EnableWARP" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Wow6432Node\Microsoft\DirectDraw" /v "EnableWARP" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "AsyncFlip" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "DisablePresentationInterval" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "EnableFramePacing" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "EnableWARP" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "ForceWARP" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D" /v "RenderAheadLimit" /t REG_DWORD /d "1" /f
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Direct3D" /v "EnableWARP" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Microsoft\Direct3D\Drivers" /v "EnableWARP" /t REG_DWORD /d "1" /f
-reg add "HKCU\SOFTWARE\Microsoft\Direct3D\Drivers" /v "EnableWARP" /t REG_DWORD /d "1" /f
-reg add "HKLM\SOFTWARE\Wow6432Node\Microsoft\Direct3D\Drivers" /v "EnableWARP" /t REG_DWORD /d "1" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "EnableFbrValidation" /t REG_DWORD /d "1" /f
 
 PAUSE
