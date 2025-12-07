@@ -9,20 +9,19 @@ PAUSE
 
 rem ::: CPU Thread Quantum and Foreground Boost Priority Tweaks
 
-rem ::: No Foreground Boost (0)
-rem ::: 0x18 Hex 24 Decimal = Long/Fixed/0 187.5ms/187.5ms/375ms (Windows Default for Processor Scheduling set to "Background Services")
-rem ::: 0x24 Hex 36 Decimal = Short/Variable/0 31.25m/31.25ms/62.50ms
-rem ::: 0x28 Hex 40 Decimal = Short/Fixed/0 93.75ms/93.75ms/281.25ms
+rem ::: No Foreground Boost [0]
+rem ::: 0x18 Hex 24 Decimal = | Long | Fixed | 0 | [187.5ms/187.5ms/375ms] (Windows Default for Processor Scheduling set to "Background Services")
+rem ::: 0x24 Hex 36 Decimal = | Short | Variable | 0 | [31.25m/31.25ms/62.50ms]
+rem ::: 0x28 Hex 40 Decimal = | Short | Fixed | 0 | [93.75ms/93.75ms/281.25ms]
 
-rem ::: High Foreground Boost (2)
-rem ::: 0x26 Hex 38 Decimal = Short/Variable/2 93.75ms/31.25ms/125.00ms (Windows Default for Processor Scheduling set to "Programs")
-rem ::: 0x2A Hex 42 Decimal = Short/Fixed/2 93.75ms/93.75ms/281.25ms
+rem ::: High Foreground Boost [2]
+rem ::: 0x26 Hex 38 Decimal = | Short | Variable | 2 | [93.75ms/31.25ms/125.00ms] (Windows Default for Processor Scheduling set to "Programs")
+rem ::: 0x2A Hex 42 Decimal = | Short | Fixed | 2 | [93.75ms/93.75ms/281.25ms]
 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "0x00000024" /f
 reg add "HKLM\SYSTEM\ControlSet001\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "0x00000024" /f
 
 rem ::: Add Critical and Delayed Worker Threads
-
 rem ::: AdditionalCriticalWorkerThreads value increases the number of critical worker threads created for a specified work queue
 rem ::: By increasing the value of this one, you can get more additional worker threads which will allow for more queued I/O in the storage subsystem
 rem ::: Allow more I/O to queue in the storage subsystem
@@ -30,7 +29,7 @@ rem ::: Value is determined by RAM size NOT thread or core count
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalCriticalWorkerThreads" /t REG_DWORD /d "16" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalDelayedWorkerThreads" /t REG_DWORD /d "16"  /f
 
-rem ::: Priority Control (Default = 2) (Lowest Latency = 0)
+rem ::: Priority Control [Default = 2 | Lowest Latency = 0]
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "PriorityControl" /t REG_DWORD /d "0" /f
 
 rem ::: Disable Core Parking
@@ -118,9 +117,10 @@ reg add "HKLM\SYSTEM\ControlSet001\Control\Processor" /v "CpuIdleScrubValueDefau
 reg add "HKLM\SYSTEM\ControlSet001\Control\Processor" /v "CpuIdleScrubValueDefaultAuto" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\ControlSet001\Control\Processor" /v "CpuIdleScrubValueDefaultManual" /t REG_DWORD /d "0" /f
 
+rem ::: Disable Power Management
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy" /v "fDisablePowerManagement" /t REG_DWORD /d "1" /f
 
-rem ::: Windows CPU Thread Priorities
+rem ::: Windows CPU Thread Priority
 rem ::: Threads are scheduled for execution based on their priority, ranging from 0 (lowest) to 31 (highest)
 rem ::: 15 = Above Normal - Time Critical / High - Time Critical
 
