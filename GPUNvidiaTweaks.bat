@@ -7,10 +7,8 @@ rem ::: https://github.com/shoober420/windows11-scripts
 
 rem ::: !!! WARNING !!!
 rem ::: !!! DOES NOT SUPPORT DIGITAL STREAM COMPRESSION (DSC) !!!
-rem ::: !!! Black screen will occur if used with settings that activate DSC !!!
-
+rem ::: !!! Black Screen may occur if used with settings that activate DSC !!!
 rem ::: !!! DISABLE ONBOARD INTEGRATED GPU IN BIOS AND DEVICE MANAGER !!!
-rem ::: !!! IMPROVES LATENCY AT THE COST OF A LITTLE FRAMERATE !!!
 
 PAUSE
 

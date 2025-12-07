@@ -1,4 +1,4 @@
-rem ::: Device & Services Tweaks
+rem ::: Device Services Tweaks
 
 rem ::: Plundered by NEKR1D
 

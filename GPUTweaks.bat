@@ -7,10 +7,8 @@ rem ::: https://github.com/shoober420/windows11-scripts
 
 rem ::: !!! WARNING !!!
 rem ::: !!! DOES NOT SUPPORT DIGITAL STREAM COMPRESSION (DSC) !!!
-rem ::: !!! Black screen will occur if used with settings that activate DSC !!!
-
+rem ::: !!! BLACK SCREEN MAY OCCUR if DSC ACTIVATES !!!
 rem ::: !!! DISABLE ONBOARD INTEGRATED GPU IN BIOS AND DEVICE MANAGER !!!
-rem ::: !!! IMPROVES LATENCY AT THE COST OF A LITTLE FRAMERATE !!!
 
 PAUSE
 
@@ -20,7 +18,8 @@ if not exist C:\Windows\System32\wbem\WMIC.exe (
     echo Done.
 )
 
-rem ::: MAY CAUSE CRASHES
+rem ::: Disable Miracast
+rem ::: !!! MAY CAUSE CRASHES !!!
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t REG_DWORD /d "0" /f
 
 rem ::: Affinity tweak
