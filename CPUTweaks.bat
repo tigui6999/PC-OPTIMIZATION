@@ -152,8 +152,4 @@ reg add "HKLM\System\CurrentControlSet\Services\usbccgp\Parameters" /v "ThreadPr
 reg add "HKLM\System\CurrentControlSet\Services\monitor\Parameters" /v "ThreadPriority" /t REG_DWORD /d "0x0000000f" /f
 reg add "HKLM\System\CurrentControlSet\Services\HDAudBus\Parameters" /v "ThreadPriority" /t REG_DWORD /d "0x0000000f" /f
 
-rem ::: Enable Foreground Boost
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "ForegroundPriorityBoost" /t REG_DWORD /d "1" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "ForegroundBoost" /t REG_DWORD /d "1" /f
-
 PAUSE
