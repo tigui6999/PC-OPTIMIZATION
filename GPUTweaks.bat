@@ -5,11 +5,6 @@ rem ::: Plundered by NEKR1D
 rem ::: Originally created by Shoober420
 rem ::: https://github.com/shoober420/windows11-scripts
 
-rem ::: !!! WARNING !!!
-rem ::: !!! DOES NOT SUPPORT DIGITAL STREAM COMPRESSION (DSC) !!!
-rem ::: !!! BLACK SCREEN WILL OCCUR IF DSC IS ACTIVE !!!
-rem ::: !!! DISABLE ONBOARD INTEGRATED GPU IN BIOS AND DEVICE MANAGER !!!
-
 PAUSE
 
 if not exist C:\Windows\System32\wbem\WMIC.exe (
@@ -138,9 +133,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PrimaryPushB
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "FlTransitionLatency" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "D3PCLatency" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "RMDeepLlEntryLatencyUsec" /t REG_DWORD /d "1" /f
-
-rem ::: 20 = 32
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PciLatencyTimerControl" /t REG_DWORD /d "20" /f
 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "Node3DLowLatency" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "LOWLATENCY" /t REG_DWORD /d "1" /f
