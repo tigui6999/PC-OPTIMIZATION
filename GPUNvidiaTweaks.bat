@@ -7,7 +7,7 @@ rem ::: https://github.com/shoober420/windows11-scripts
 
 rem ::: !!! WARNING !!!
 rem ::: !!! DOES NOT SUPPORT DIGITAL STREAM COMPRESSION (DSC) !!!
-rem ::: !!! Black Screen may occur if used with settings that activate DSC !!!
+rem ::: !!! BLACK SCREEN WILL OCCUR IF DSC IS ACTIVE !!!
 rem ::: !!! DISABLE ONBOARD INTEGRATED GPU IN BIOS AND DEVICE MANAGER !!!
 
 PAUSE
@@ -177,14 +177,14 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "EnableMidGfxpShare
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "RmEnableHda" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "EnableHDAudioD3Cold" /t REG_DWORD /d "0" /f
 
-rem ::: NVIDIA HD audio tweaks
+rem ::: NVIDIA HD Audio
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i\PowerSettings" /v "ConservationIdleTime" /t REG_DWORD /d "00000000" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i\PowerSettings" /v "IdlePowerState" /t REG_DWORD /d "00000000" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i\PowerSettings" /v "PerformanceIdleTime" /t REG_DWORD /d "00000000" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "RmEnableHda" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "EnableHDAudioD3Cold" /t REG_DWORD /d "0" /f
 
-rem ::: Define PciLatencyTimerControl
+rem ::: Define Pci Latency Timer Control
 rem ::: melody / alufena = 0x00000020 (32)
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%i" /v "PciLatencyTimerControl" /t REG_DWORD /d "0x00000020" /f
 )
@@ -558,7 +558,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "KMD_EnableSDMAPree
 rem reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "KMD_PreemptionLevelLimit" /t REG_DWORD /d "1" /f
 reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "KMD_PreemptionLevelLimit" /f
 
-rem ::: Enable DPC'S for each Core
+rem ::: Enable DPC'S for each CPU Core
 rem ::: May cause crashing and freezing // Enable = 1 Disable = 0
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "RmGpsPsEnablePerCpuCoreDpc" /t REG_DWORD /d "1" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\NVAPI" /v "RmGpsPsEnablePerCpuCoreDpc" /t REG_DWORD /d "1" /f
@@ -569,7 +569,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power" /v "RmGpsP
 rem ::: Enable NVIDIA tray icon
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\NvTray" /v "StartOnLogin" /t REG_DWORD /d 1 /f
 
-rem ::: Use Advanced 3D Settings
+rem ::: Use NVIDIA Advanced 3D Settings
+rem ::: Enable old hidden internal UI paths. In modern drivers this value is usually ignored because the NVTweak system is largely deprecated.
 REG ADD "HKEY_CURRENT_USER\Software\NVIDIA Corporation\Global\NVTweak" /v "Gestalt" /t REG_DWORD /d 2 /f
 
 rem ::: Use NVIDIA Old Sharpening Filter (Old and New Reg Locations)
