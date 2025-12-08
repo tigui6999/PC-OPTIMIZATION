@@ -577,7 +577,7 @@ rem ::: Enable Old NVIDIA Sharpening Filter (Both legacy and new reg directory l
 reg add "HKLM\SYSTEM\CurrentControlSet\services\nvlddmkm\FTS" /v "EnableGR535" /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters\FTS" /v "EnableGR535" /t REG_DWORD /d 0 /f
 
-rem ::: !!! Display Stream Compession (DSC) BLACK SCREEN FIX !!!
+rem ::: !!! Display Stream Compession (DSC) BLACK SCREEN POTENTIAL FIX !!!
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "EnableTiledDisplay" /t REG_DWORD /d "1" /f
 
 for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /L "PCI\VEN_"') do (
