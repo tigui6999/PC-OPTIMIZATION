@@ -4,10 +4,11 @@ rem ::: Plundered by NEKR1D
 
 rem ::: !!! Warning !!!
 rem ::: !!! Your hardware and devices are different !!!
-rem ::: !!! May brick your Network Adapter and connectivity !!!
+rem ::: !!! May cause Network Adapter driver conflicts and break all connectivity !!!
 rem ::: !!! Use script as reference only !!!
 
-rem ::: !!! Mismatched settings between browser, OS, tcp stack, device and registry can have unintended behavior !!!
+rem ::: !!! Caution !!!
+rem ::: !!! Mismatched network settings between browser, OS, IP/TCP Stack, Device and Registry can have unintended behavior !!!
 rem ::: !!! Settings can take priority over others depending at which layer they are set !!!
 
 rem ::: Installing WMIC...
