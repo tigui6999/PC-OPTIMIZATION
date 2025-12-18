@@ -11,7 +11,7 @@ rem ::: !!! Warning !!!
 rem ::: !!! Your hardware, chipset and devices are different !!!
 rem ::: !!! Use script as reference only !!!
 
-rem ::: pnputil /enum-devices" shows all services
+rem ::: pnputil /enum-devices [shows all services]
 
 rem ::: WAN Miniport (L2TP)
 pnputil /disable-device "SWD\MSRRAS\MS_L2TPMINIPORT"

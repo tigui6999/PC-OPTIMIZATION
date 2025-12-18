@@ -10,7 +10,7 @@ rem ::: Forces Windows 11 to obey timer resolution settings (otherwise timer set
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "GlobalTimerResolutionRequests" /t REG_DWORD /d "1" /f
 
 rem ::: Disable HPET in Windows
-rem ::: useplatformclock not found by default, setting not present unless enabled prior
+rem ::: useplatformclock won't be present unless enabled prior
 bcdedit /set useplatformclock no
 
 rem ::: Disable RTC (Real Time Clock)

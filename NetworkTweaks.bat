@@ -76,7 +76,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "EnableD
 
 rem ::: Require DoH = 3 / Enable DoH = 2 / Prohibit DoH = 1
 rem ::: Requiring DoH (3) can cause conflicts with ISP DNS and third-party VPN DNS that aren't configurable and can't handle this flag correctly
-rem ::: Enabling DoH (2) resolved conflicts and isn't worth investigating furthur. Just be aware forcing DoH (3) can cause unreachable network traffic/websites/services
+rem ::: Enabling DoH (2) resolved conflicts and isn't worth investigating furthur. Just be aware forcing DoH (3) can cause unreachable network traffic/websites/services in some scenarios.
 reg add "HKLM\Software\Policies\Microsoft\Windows NT\DNSClient" /v "DoHPolicy" /t REG_DWORD /d "2" /f
 
 rem ::: Disable TCP/IP NetBIOS Helper Service (lmhosts)
@@ -223,17 +223,17 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Mana
 rem ::: Maximum Transmission Unit (MTU)
 
 rem ::: FastSendDatagramThreshold / FastCopyReceiveThreshold should match MTU value in decimal (usually 1472), not hexadecimal
-rem ::: Setting FastSendDatagram to match MTU value of 1500
-rem ::: Setting FastCopyReceiveThreshold to match MTU value of 1500
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\AFD\Parameters" /v "FastSendDatagramThreshold" /t REG_DWORD /d 1500 /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\AFD\Parameters" /v "FastCopyReceiveThreshold" /t REG_DWORD /d 1500 /f
+rem ::: Setting FastSendDatagram to match MTU value of 1514
+rem ::: Setting FastCopyReceiveThreshold to match MTU value of 1514
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\AFD\Parameters" /v "FastSendDatagramThreshold" /t REG_DWORD /d 1514 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\AFD\Parameters" /v "FastCopyReceiveThreshold" /t REG_DWORD /d 1514 /f
 
 rem ::: Disabling MTU Discovery
 rem ::: Disable automatic generated MTU value based on traffic
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUDiscovery" /t REG_DWORD /d "0" /f
 
-rem ::: Setting MTU size to 1500 on Network Adapter
-netsh interface ipv4 set subinterface "Ethernet" mtu=1500 store=persistent
+rem ::: Setting MTU size to 1514 on Network Adapter
+netsh interface ipv4 set subinterface "Ethernet" mtu=1514 store=persistent
 
 rem ::: Disabling TCP 1323 Options (Removes Timestamps - extra headers)
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v Tcp1323Opts /t REG_DWORD /d "0" /f
