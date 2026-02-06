@@ -86,7 +86,7 @@
 - **In NVIDIA Profile Inspector:**
    - Set rBAR - Feature to ```Enable```
    - Set rBAR - Options to  ```0x00000001```
-   - Set rBAR - Size Limit to ```0x0000000060000000``` [_1.5GB_]
+   - Set rBAR - Size Limit to ```0x0000000040000000``` [_1GB_]  or ```0x0000000060000000``` [_1.5GB_]
   
 > [!NOTE]
 > - Enabling ```Resizable BAR``` in the BIOS depends on your hardware compatibility, motherboard manufacturer and BIOS version.
