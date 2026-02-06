@@ -40,7 +40,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\StorNVMe\Parameters\Device" /v "A
 rem ::: Enable NVME native drivers in Windows 11
 rem ::: https://x.com/pureplayerpc/status/2002980378013786329
 rem ::: Can significantly increase Read/Write/Seq/Rnd and should be used with Windows ver. 25H2
-rem ::: Experimental - Can brick Windows or third-party storage software
+rem ::: Experimental - Can brick Windows, conflict with Windows Safe Mode or break third-party storage software
 rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides" /v "735209102" /t REG_DWORD /d 1 /f
 rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides" /v "1853569164" /t REG_DWORD /d 1 /f
 rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\Microsoft\FeatureManagement\Overrides" /v "156965516" /t REG_DWORD /d 1 /f
