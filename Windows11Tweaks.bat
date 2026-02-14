@@ -3159,6 +3159,20 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v HideRecommendedSe
 rem ::: Remove Application Startup Delay after Windows Login
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v StartupDelayInMSec /t REG_DWORD /d 0 /f
 
+rem ::: Disable Windows CoPilot
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot" /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f
+
+rem ::: Disable Windows ReCall
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows AI" /v AllowRecallEnablement /t REG_DWORD /d 0 /f
+
+rem ::: Disable Windows Start Menu Search Web (improves start menu speed significantly)
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v ConnectedSearchUseWeb /t REG_DWORD /d 0 /f
+
+rem ::: Disable Windows Ink, Writing and Typing Data Collection Submission to Microsoft
+reg add "HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization" /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization" /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f
+
+
 rem ::: REBOOT YOUR PC
 
 PAUSE
