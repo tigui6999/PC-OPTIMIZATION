@@ -3172,7 +3172,6 @@ rem ::: Disable Windows Ink, Writing and Typing Data Collection Submission to Mi
 reg add "HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization" /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\InputPersonalization" /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f
 
-
 rem ::: REBOOT YOUR PC
 
 PAUSE
