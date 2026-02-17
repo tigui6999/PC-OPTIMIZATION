@@ -4,7 +4,7 @@
 
 - A collection of ```Tweaks.bat``` focused on optimizing overall responsiveness by improving framerate, frametimes, input and device communication latencies.
 - Experimental ```Windows11Tweaks.bat``` that make the OS more responsive. Remove bloat and configure telemetry, security and privacy elements.
-- Other improvements can include reducing or eliminating stutters and hitching.
+- Other potential benefits and improvements include; reducing or eliminating stutters and hitching.
 
 > [!NOTE]
 > - Serves mainly as a document to track my own configuration changes.
