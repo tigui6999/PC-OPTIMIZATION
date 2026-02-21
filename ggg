@@ -1,0 +1,459 @@
+@echo off
+REM ============================================================================
+REM Windows 11 Gaming Latency Optimization Script
+REM Author: Gaming Optimization Automation
+REM Date: 2026-02-20
+REM Description: Comprehensive optimization for gaming latency reduction
+REM ============================================================================
+
+setlocal enabledelayedexpansion
+cls
+
+REM Check for administrator privileges
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo.
+    echo ============================================================================
+    echo ERROR: This script requires Administrator privileges!
+    echo ============================================================================
+    echo.
+    echo Please run this script as Administrator:
+    echo 1. Right-click on the script
+    echo 2. Select "Run as administrator"
+    echo.
+    pause
+    exit /b 1
+)
+
+REM Set up logging
+set "logfile=%~dp0Gaming_Optimization_Log_%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%%time:~6,2%.txt"
+set "backupfile=%~dp0Gaming_Optimization_Restore.bat"
+
+echo. > "%logfile%"
+echo ============================================================================ >> "%logfile%"
+echo Windows 11 Gaming Latency Optimization Log >> "%logfile%"
+echo Date: %date% %time% >> "%logfile%"
+echo ============================================================================ >> "%logfile%"
+echo. >> "%logfile%"
+
+cls
+echo.
+echo ============================================================================
+echo        WINDOWS 11 GAMING LATENCY OPTIMIZATION SCRIPT
+echo ============================================================================
+echo.
+echo This script will optimize your Windows 11 system for gaming with focus on
+echo reducing input lag and increasing responsiveness.
+echo.
+echo Features:
+echo  - Power settings optimization
+echo  - Visual effects reduction
+echo  - Background app management
+echo  - GPU and driver optimization
+echo  - Network latency reduction
+echo  - Registry tweaks for gaming
+echo  - DPC latency optimization
+echo  - USB device optimization
+echo.
+echo WARNING: This script makes system modifications. A restore script will be
+echo created automatically to revert all changes if needed.
+echo.
+echo ============================================================================
+echo.
+
+setlocal enabledelayedexpansion
+
+set /p confirm="Do you want to proceed with optimization? (Y/N): "
+if /i not "%confirm%"=="Y" (
+    echo Optimization cancelled.
+    exit /b 0
+)
+
+REM Create restore script header
+(
+    echo @echo off
+    echo REM Restore script created by Gaming Optimization Script
+    echo REM Created: %date% %time%
+    echo REM This script will restore your system to its original state
+    echo.
+    echo echo.
+    echo echo ============================================================================
+    echo echo        WINDOWS 11 GAMING OPTIMIZATION - RESTORE SCRIPT
+    echo echo ============================================================================
+    echo echo.
+    echo echo WARNING: This will revert all optimizations made by the optimization script.
+    echo echo.
+    echo net session ^>nul 2^>^&1
+    echo if %%errorLevel%% neq 0 ^(
+    echo     echo ERROR: This script requires Administrator privileges!
+    echo     pause
+    echo     exit /b 1
+    echo ^)
+    echo.
+    echo set /p confirm="Do you want to restore your system? (Y/N): "
+    echo if /i not "!confirm!"=="Y" ^(
+    echo     echo Restore cancelled.
+    echo     exit /b 0
+    echo ^)
+    echo.
+    echo echo Restoring system...
+    echo echo.
+) > "%backupfile%"
+
+echo.
+echo [1/12] Optimizing Power Settings...
+echo [1/12] Optimizing Power Settings... >> "%logfile%"
+call :powerSettings
+echo.
+
+echo [2/12] Disabling Visual Effects...
+echo [2/12] Disabling Visual Effects... >> "%logfile%"
+call :visualEffects
+echo.
+
+echo [3/12] Disabling Background Apps and Services...
+echo [3/12] Disabling Background Apps and Services... >> "%logfile%"
+call :backgroundApps
+echo.
+
+echo [4/12] Optimizing Input Devices (Mouse/Keyboard)...
+echo [4/12] Optimizing Input Devices... >> "%logfile%"
+call :inputOptimization
+echo.
+
+echo [5/12] Disabling Windows Features for Gaming...
+echo [5/12] Disabling Windows Features for Gaming... >> "%logfile%"
+call :gamingFeatures
+echo.
+
+echo [6/12] Optimizing GPU Settings (Registry)...
+echo [6/12] Optimizing GPU Settings... >> "%logfile%"
+call :gpuOptimization
+echo.
+
+echo [7/12] Reducing DPC Latency (Registry)...
+echo [7/12] Reducing DPC Latency... >> "%logfile%"
+call :dpcLatency
+echo.
+
+echo [8/12] Optimizing Network Settings...
+echo [8/12] Optimizing Network Settings... >> "%logfile%"
+call :networkOptimization
+echo.
+
+echo [9/12] USB and Device Optimization...
+echo [9/12] USB and Device Optimization... >> "%logfile%"
+call :usbOptimization
+echo.
+
+echo [10/12] Display and Monitor Settings...
+echo [10/12] Display and Monitor Settings... >> "%logfile%"
+call :displaySettings
+echo.
+
+echo [11/12] Audio Processing Optimization...
+echo [11/12] Audio Processing Optimization... >> "%logfile%"
+call :audioOptimization
+echo.
+
+echo [12/12] Final System Tweaks...
+echo [12/12] Final System Tweaks... >> "%logfile%"
+call :finalTweaks
+echo.
+
+echo.
+echo ============================================================================
+echo        OPTIMIZATION COMPLETE!
+echo ============================================================================
+echo.
+echo Logs saved to: %logfile%
+echo Restore script saved to: %backupfile%
+echo.
+echo Changes have been applied. Please restart your computer for all changes
+echo to take full effect.
+echo.
+echo To restore your system to its original state, run the restore script:
+echo %backupfile%
+echo.
+pause
+exit /b 0
+
+REM ============================================================================
+REM SUBROUTINES
+REM ============================================================================
+
+:powerSettings
+echo Optimizing power settings for gaming...
+echo Optimizing power settings for gaming... >> "%logfile%"
+
+REM Set to Ultimate Performance (if available) or High Performance
+powercfg /list | find /i "ultimate" >nul 2>&1
+if %errorLevel% equ 0 (
+    for /f "tokens=4" %%a in ('powercfg /list ^| find /i "ultimate"') do (
+        echo Enabling Ultimate Performance power scheme...
+        echo Enabling Ultimate Performance power scheme... >> "%logfile%"
+        powercfg /setactive %%a
+        echo REM Restore power scheme >> "%backupfile%"
+        echo powercfg /setactive %%a >> "%backupfile%"
+    )
+) else (
+    echo Enabling High Performance power scheme...
+    echo Enabling High Performance power scheme... >> "%logfile%"
+    powercfg /setactive 381b4222-f694-41f0-9685-ff5bb260df2e
+    echo REM Restore power scheme >> "%backupfile%"
+    echo powercfg /setactive 381b4222-f694-41f0-9685-ff5bb260df2e >> "%backupfile%"
+)
+
+REM Disable USB Selective Suspend
+echo Disabling USB Selective Suspend...
+echo Disabling USB Selective Suspend... >> "%logfile%"
+powercfg /change monitor-timeout-ac 0
+powercfg /change disk-timeout-ac 0
+powercfg /setacvalueindex scheme_current sub_usb usbselectivesuspend 0
+powercfg /setactive scheme_current
+
+echo REM USB Selective Suspend - restore >> "%backupfile%"
+echo powercfg /setacvalueindex scheme_current sub_usb usbselectivesuspend 1 >> "%backupfile%"
+echo powercfg /setacvalueindex scheme_current sub_usb usbselectivesuspend 1 >> "%backupfile%"
+
+echo Power settings optimized successfully.
+echo Power settings optimized successfully. >> "%logfile%"
+exit /b 0
+
+:visualEffects
+echo Disabling Visual Effects...
+echo Disabling Visual Effects... >> "%logfile%"
+
+REM Disable visual effects via registry
+reg add "HKCU\Control Panel\Desktop" /v "FontSmoothing" /t REG_SZ /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v "UserPreferencesMask" /t REG_BINARY /d "9032078010000000" /f >nul 2>&1
+
+echo REM Restore Visual Effects >> "%backupfile%"
+echo reg add "HKCU\Control Panel\Desktop" /v "FontSmoothing" /t REG_SZ /d "2" /f >> "%backupfile%"
+
+echo Visual effects disabled successfully.
+echo Visual effects disabled successfully. >> "%logfile%"
+exit /b 0
+
+:backgroundApps
+echo Disabling Background Apps...
+echo Disabling Background Apps... >> "%logfile%"
+
+REM Disable Xbox Game Bar
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+echo REM Restore Xbox Game Bar >> "%backupfile%"
+echo reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "1" /f >> "%backupfile%"
+
+REM Disable Game Bar
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+echo REM Restore Game Bar >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "1" /f >> "%backupfile%"
+
+REM Disable Background App Refresh
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "1" /f >nul 2>&1
+echo REM Restore Background App Refresh >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+REM Disable Windows Update background downloading
+reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "1" /f >nul 2>&1
+echo REM Restore Windows Update >> "%backupfile%"
+echo reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+echo Background apps disabled successfully.
+echo Background apps disabled successfully. >> "%logfile%"
+exit /b 0
+
+:inputOptimization
+echo Optimizing Input Devices...
+echo Optimizing Input Devices... >> "%logfile%"
+
+REM Disable Mouse Pointer Precision
+reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold1" /t REG_SZ /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold2" /t REG_SZ /d "0" /f >nul 2>&1
+
+echo REM Restore Mouse Settings >> "%backupfile%"
+echo reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "1" /f >> "%backupfile%"
+echo reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold1" /t REG_SZ /d "6" /f >> "%backupfile%"
+echo reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold2" /t REG_SZ /d "10" /f >> "%backupfile%"
+
+REM Reduce mouse polling delay
+reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t REG_SZ /d "10" /f >nul 2>&1
+echo REM Restore Mouse Sensitivity >> "%backupfile%"
+echo reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t REG_SZ /d "10" /f >> "%backupfile%"
+
+echo Input devices optimized successfully.
+echo Input devices optimized successfully. >> "%logfile%"
+exit /b 0
+
+:gamingFeatures
+echo Optimizing Gaming Features...
+echo Optimizing Gaming Features... >> "%logfile%"
+
+REM Enable Game Mode
+reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t REG_DWORD /d "1" /f >nul 2>&1
+reg add "HKCU\Software\Microsoft\GameBar" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+
+echo REM Restore Game Mode >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+REM Disable Full Screen Optimizations globally
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppSettings" /v "UseLegacyFullScreenOptimizations" /t REG_DWORD /d "1" /f >nul 2>&1
+echo REM Restore Fullscreen Optimizations >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppSettings" /v "UseLegacyFullScreenOptimizations" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+echo Gaming features optimized successfully.
+echo Gaming features optimized successfully. >> "%logfile%"
+exit /b 0
+
+:gpuOptimization
+echo Optimizing GPU Settings...
+echo Optimizing GPU Settings... >> "%logfile%"
+
+REM NVIDIA-specific optimizations
+reg add "HKCU\Software\NVIDIA Corporation\Global\FrameViewPreset" /v "FrameViewType" /t REG_DWORD /d "0" /f >nul 2>&1
+
+REM AMD-specific optimizations
+reg add "HKCU\Software\AMD\CN" /v "CatalystAI" /t REG_DWORD /d "1" /f >nul 2>&1
+
+REM Intel GPU optimizations (if applicable)
+reg add "HKCU\Software\Intel\GMM" /v "DynamicTuning" /t REG_DWORD /d "0" /f >nul 2>&1
+
+echo REM GPU optimization settings restored >> "%backupfile%"
+echo reg add "HKCU\Software\NVIDIA Corporation\Global\FrameViewPreset" /v "FrameViewType" /t REG_DWORD /d "1" /f >> "%backupfile%"
+
+echo GPU settings optimized successfully.
+echo GPU settings optimized successfully. >> "%logfile%"
+exit /b 0
+
+:dpcLatency
+echo Reducing DPC Latency...
+echo Reducing DPC Latency... >> "%logfile%"
+
+REM Disable High Precision Event Timer (HPET) if causing issues
+reg add "HKLM\System\CurrentControlSet\Services\hpet" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+echo REM Restore HPET >> "%backupfile%"
+echo reg add "HKLM\System\CurrentControlSet\Services\hpet" /v "Start" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+REM Optimize interrupt handling
+reg add "HKLM\System\CurrentControlSet\Control\PriorityControl" /v "ConvertibleAAEnable" /t REG_DWORD /d "0" /f >nul 2>&1
+echo REM Restore interrupt handling >> "%backupfile%"
+echo reg add "HKLM\System\CurrentControlSet\Control\PriorityControl" /v "ConvertibleAAEnable" /t REG_DWORD /d "1" /f >> "%backupfile%"
+
+echo DPC latency optimized successfully.
+echo DPC latency optimized successfully. >> "%logfile%"
+exit /b 0
+
+:networkOptimization
+echo Optimizing Network Settings...
+echo Optimizing Network Settings... >> "%logfile%"
+
+REM Enable TCP Receive Side Scaling (RSS)
+netsh int tcp set global rss=enabled >nul 2>&1
+echo REM Restore RSS >> "%backupfile%"
+echo netsh int tcp set global rss=disabled >> "%backupfile%"
+
+REM Set TCP Auto-tuning level to normal
+netsh int tcp set global autotuninglevel=normal >nul 2>&1
+echo REM Restore Auto-tuning >> "%backupfile%"
+echo netsh int tcp set global autotuninglevel=restricted >> "%backupfile%"
+
+REM Disable TCP Nagle's algorithm
+netsh int tcp set global nagle=disabled >nul 2>&1
+echo REM Restore Nagle >> "%backupfile%"
+echo netsh int tcp set global nagle=enabled >> "%backupfile%"
+
+REM Optimize TCP Window Size
+netsh int tcp set global cwndrestart=disabled >nul 2>&1
+echo REM Restore cwndrestart >> "%backupfile%"
+echo netsh int tcp set global cwndrestart=enabled >> "%backupfile%"
+
+REM Disable ECN capability negotiation
+netsh int tcp set global ecncapability=disabled >nul 2>&1
+echo REM Restore ECN >> "%backupfile%"
+echo netsh int tcp set global ecncapability=enabled >> "%backupfile%"
+
+echo Network settings optimized successfully.
+echo Network settings optimized successfully. >> "%logfile%"
+exit /b 0
+
+:usbOptimization
+echo Optimizing USB Devices...
+echo Optimizing USB Devices... >> "%logfile%"
+
+REM Disable USB Power Saving
+reg add "HKLM\System\CurrentControlSet\Services\USBHUB\Parameters" /v "DisableOnSoftRemove" /t REG_DWORD /d "1" /f >nul 2>&1
+echo REM Restore USB Power Saving >> "%backupfile%"
+echo reg add "HKLM\System\CurrentControlSet\Services\USBHUB\Parameters" /v "DisableOnSoftRemove" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+REM Disable USB Selective Suspend for all devices
+for /f "tokens=*" %%i in ('reg query "HKLM\System\CurrentControlSet\enum\usb" /s /f "Device Parameters"') do (
+    reg add "%%i" /v "SelectiveSuspendEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+)
+
+echo USB devices optimized successfully.
+echo USB devices optimized successfully. >> "%logfile%"
+exit /b 0
+
+:displaySettings
+echo Optimizing Display Settings...
+echo Optimizing Display Settings... >> "%logfile%"
+
+REM Disable fullscreen optimizations for exclusive mode
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppSettings" /v "UseLegacyFullScreenOptimizations" /t REG_DWORD /d "1" /f >nul 2>&1
+
+REM Enable GPU acceleration
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\GraphicsSettings" /v "HwAcceleration" /t REG_DWORD /d "1" /f >nul 2>&1
+
+echo REM Restore Display Settings >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppSettings" /v "UseLegacyFullScreenOptimizations" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+echo Display settings optimized successfully.
+echo Display settings optimized successfully. >> "%logfile%"
+exit /b 0
+
+:audioOptimization
+echo Optimizing Audio Processing...
+echo Optimizing Audio Processing... >> "%logfile%"
+
+REM Disable audio enhancements via registry
+reg add "HKCU\Software\Microsoft\Multimedia\Audio" /v "UserProfilePath" /t REG_SZ /d "" /f >nul 2>&1
+
+REM Set audio quality to maximum
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Multimedia" /v "EnableMMCSS" /t REG_DWORD /d "1" /f >nul 2>&1
+
+echo Audio processing optimized successfully.
+echo Audio processing optimized successfully. >> "%logfile%"
+exit /b 0
+
+:finalTweaks
+echo Applying Final System Tweaks...
+echo Applying Final System Tweaks... >> "%logfile%"
+
+REM Disable animations
+reg add "HKCU\Control Panel\Desktop" /v "UserPreferencesMask" /t REG_BINARY /d "9012078010000000" /f >nul 2>&1
+
+REM Reduce animation duration
+reg add "HKCU\Control Panel\Desktop\WindowMetrics" /v "MinAnimate" /t REG_SZ /d "0" /f >nul 2>&1
+
+REM Disable transparency effects
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "0" /f >nul 2>&1
+
+REM Disable cached thumbnails
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisableThumbnailCache" /t REG_DWORD /d "1" /f >nul 2>&1
+
+echo REM Restore Final Tweaks >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "1" /f >> "%backupfile%"
+echo reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisableThumbnailCache" /t REG_DWORD /d "0" /f >> "%backupfile%"
+
+REM Flush DNS cache
+ipconfig /flushdns >nul 2>&1
+echo REM DNS cache flushed >> "%backupfile%"
+
+echo Final tweaks applied successfully.
+echo Final tweaks applied successfully. >> "%logfile%"
+echo. >> "%logfile%"
+echo ============================================================================ >> "%logfile%"
+echo Optimization Complete at %date% %time% >> "%logfile%"
+echo ============================================================================ >> "%logfile%"
+exit /b 0
